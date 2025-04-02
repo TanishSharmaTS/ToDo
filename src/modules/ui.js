@@ -1,71 +1,62 @@
-import {tasks} from "./tasks";
+import { tasks } from "./tasks";
 import { addTasks } from "./events";
+import { showTaskEditForm } from "./dom";
 
-const content = document.querySelector(".content")
+const content = document.querySelector(".content");
 
-
-function displayTasks(){
-
-    Object.values(tasks).forEach(task =>{
-        createTaskCards(task)
-    })
-    
+function displayTasks() {
+    Object.values(tasks).forEach(task => {
+        createTaskCards(task);
+    });
 }
 
-function createTaskCards(task){
+function createTaskCards(task) {
+    const { title, dueDate, completed } = task;
 
-    const { title,dueDate, completed } = task
+    const taskContainer = document.createElement("div");
+    taskContainer.classList.add("task-container");
 
+    const taskTitle = document.createElement("h3");
+    taskTitle.classList.add("task-title");
+    taskTitle.textContent = title;
 
-    const taskContainer = document.createElement("div")
-    taskContainer.classList.add("task-container")
+    const taskLeftSide = document.createElement('div');
+    taskLeftSide.classList.add('left-task-items');
 
-    const taskTitle = document.createElement("h3")
-    taskTitle.classList.add("task-title")
-    taskTitle.textContent = title
+    const taskDueDate = document.createElement("p");
+    taskDueDate.classList.add("task-dueDate");
+    taskDueDate.textContent = dueDate;
 
-    const taskLeftSide = document.createElement('div')
-    taskLeftSide.classList.add('left-task-items')
+    const taskComplete = document.createElement("input");
+    taskComplete.type = "checkbox";
+    taskComplete.checked = completed;
+    taskComplete.classList.add("task-checkbox");
 
+    taskLeftSide.append(taskComplete, taskTitle);
+    taskContainer.append(taskLeftSide, taskDueDate);
+    content.appendChild(taskContainer);
 
-    const taskDueDate = document.createElement("p")
-    taskDueDate.classList.add("task-dueDate")
-    taskDueDate.textContent = dueDate
+    taskComplete.addEventListener('change', () => {
+        task.completed = toggleComplete(task.completed);
+    });
 
-    const taskComplete = document.createElement("input")
-    taskComplete.type = "checkbox"
-    taskComplete.checked = completed
-    taskComplete.classList.add("task-checkbox")
-
-
-    taskLeftSide.append(taskComplete, taskTitle)
-    taskContainer.append(taskLeftSide, taskDueDate)
-    content.appendChild(taskContainer)
-
-
-
-    taskComplete.addEventListener('click', ()=>{
-        task.completed = togleComplete(task.completed)
-    })
-
+    taskContainer.addEventListener('click', () => {
+        showTaskEditForm(task);
+    });
 }
 
+function toggleComplete(completionStatus) {
+    return !completionStatus;
+}
 
-function togleComplete(completionStatus){
-    
-    return completionStatus == true ? false : true
+function clearTasks() {
+    content.innerHTML = '';
 }
 
 
-function clearTasks(){
 
-    content.innerHTML = ''
-    
-}
-
-
-export function renderUi(){
-    clearTasks()
-    displayTasks()
-    addTasks()
+export function renderUi() {
+    clearTasks();
+    displayTasks();
+    addTasks();
 }

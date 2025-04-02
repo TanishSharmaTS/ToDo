@@ -4,6 +4,9 @@
     --color-standout: #00ADB5;
     --color-main: #172233;
     --color-secondary: #393E46;
+    --color-green-btn: #14c262;
+    --color-red-btn: #ff3838;
+
 }
 
 
@@ -119,19 +122,21 @@ body{
 
 /* Form */
 
+/* Adding Task  */
 
-.task-form{
+.task-form, .edit-form{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
-    padding: 100px;
+    padding: 50px;
     background-color: white;
     border-radius: 20px;
+    font: 1.2rem;
 }
 
-.task-form > form{
+.task-form > form, .edit-form >form{
     display: flex;
     flex-direction: column; 
     align-items: center;
@@ -170,4 +175,37 @@ form textarea {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+}
+
+
+/* Edit Task */
+
+.edit-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-form-buttons{
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    border: none;
+    font-size: 1rem;
+    border-radius: 20px;
+    color: var(--color-text);
+    cursor: pointer;
+}
+
+.edit-form-buttons:hover{
+    opacity: .7;
+}
+
+#save-task-changes-btn{
+    background-color:var(--color-green-btn);
+}
+
+#delete-task-btn{
+    background-color:var(--color-red-btn);
 }
