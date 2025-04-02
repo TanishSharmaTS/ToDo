@@ -209,3 +209,9 @@ form textarea {
 #delete-task-btn{
     background-color:var(--color-red-btn);
 }
+
+.individual-projects{
+    padding-left: 10px;
+    cursor: pointer;
+    margin: 10px;
+}

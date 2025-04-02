@@ -1,6 +1,9 @@
-import { tasks } from "./tasks";
-import { addTasks } from "./events";
-import { showTaskEditForm } from "./dom";
+import { tasks } from "./tasks"
+import { addTasks } from "./events"
+import { showTaskEditForm } from "./dom"
+import { projectItem } from "./projects"
+import {createProjectItems} from "./dom"
+import { addProjects } from "./events"
 
 const content = document.querySelector(".content");
 
@@ -53,10 +56,22 @@ function clearTasks() {
     content.innerHTML = '';
 }
 
+function displayProjects(){
+
+    let projectItemName  = []
+
+    for(let key in projectItem){
+        projectItemName.push(projectItem[key].name)
+    }
+
+    createProjectItems(projectItemName)
+}
 
 
 export function renderUi() {
-    clearTasks();
-    displayTasks();
-    addTasks();
+    clearTasks()
+    displayTasks()
+    addTasks()
+    displayProjects()
+    addProjects()
 }

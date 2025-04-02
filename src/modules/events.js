@@ -4,29 +4,27 @@ import { tasks } from "./tasks"
 import { renderUi } from "./ui"
 
 
-export function addTasks(){
+export function addTasks() {
     const addTaskBtn = document.querySelector(".add-task")
 
 
-    addTaskBtn.addEventListener('click', ()=>{
+    addTaskBtn.addEventListener('click', () => {
         createTaskForm()
     })
 }
 
 
 const getNextTaskKey = () => {
-    const taskKeys = Object.keys(tasks).sort(); 
-    if (taskKeys.length === 0) return "task1"; 
+    const taskKeys = Object.keys(tasks).sort();
+    if (taskKeys.length === 0) return "task1";
 
-    const lastTaskKey = taskKeys[taskKeys.length - 1]; 
-    const lastTaskNumber = parseInt(lastTaskKey.replace("task", ""), 10); 
-    return `task${lastTaskNumber + 1}`; 
+    const lastTaskKey = taskKeys[taskKeys.length - 1];
+    const lastTaskNumber = parseInt(lastTaskKey.replace("task", ""), 10);
+    return `task${lastTaskNumber + 1}`;
 };
 
 
-
-
-export function createTask(titleInput, descriptionInput, dueDateInput, projectInput){
+export function createTask(titleInput, descriptionInput, dueDateInput, projectInput) {
     const completed = false
 
 
@@ -36,8 +34,7 @@ export function createTask(titleInput, descriptionInput, dueDateInput, projectIn
     addTasktoList(newTask)
 }
 
-
-function addTasktoList(newTask){
+function addTasktoList(newTask) {
     const newTaskKey = getNextTaskKey();
 
     tasks[newTaskKey] = newTask
@@ -46,3 +43,18 @@ function addTasktoList(newTask){
 
 }
 
+
+export function addProjects() {
+
+    const addProjectBtn = document.querySelector('.add-project-btn')
+
+
+    addProjectBtn.addEventListener('click', () => {
+        displayAddProjectForm()
+    })
+}
+
+
+function displayAddProjectForm() {
+
+}

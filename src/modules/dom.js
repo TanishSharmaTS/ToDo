@@ -180,4 +180,17 @@ function deleteTask(taskItem) {
     }
 }
 
+export function createProjectItems(projectList){
+
+    const projectContainer = document.querySelector('.nav-projects')
+
+    for(let i = 0; i<projectList.length; i++){
+        const individualProjects = document.createElement('div')
+        individualProjects.classList.add('individual-projects')
+        individualProjects.textContent = projectList[i]
+        projectContainer.appendChild(individualProjects)
+    }
+
+}
+
 
